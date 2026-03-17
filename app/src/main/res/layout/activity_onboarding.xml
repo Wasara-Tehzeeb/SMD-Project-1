@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="@drawable/onboarding"
     android:padding="16dp"
     android:gravity="center_horizontal">
 
@@ -17,24 +17,6 @@
         android:scaleType="centerInside"
         android:contentDescription="@string/app_logo"/>
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/explore"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/book_your_movie_seats_easily"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"/>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -45,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/get_started"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="#FF6200EE"
+        android:layout_marginBottom="23dp"
+        android:backgroundTint="#FF0000"
         android:textColor="#ffffff"
         android:padding="12dp"/>
 
