@@ -1,0 +1,406 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#000000">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snacks_drinks"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#1A1C2E"
+            android:layout_marginBottom="12dp"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:id="@+id/imgSnack1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/snack1"
+                android:contentDescription="@string/popcorn" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvSnack1Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popcorn"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSnack1Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/_8_99"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnMinus1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/minus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+
+                    <TextView
+                        android:id="@+id/tvQuantity1"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnPlus1"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/plus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#1A1C2E"
+            android:layout_marginBottom="12dp"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:id="@+id/imgSnack2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/snack2"
+                android:contentDescription="@string/nachos" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvSnack2Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nachos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSnack2Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/_7_99"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnMinus2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/minus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+
+                    <TextView
+                        android:id="@+id/tvQuantity2"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnPlus2"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/plus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#1A1C2E"
+            android:layout_marginBottom="12dp"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:id="@+id/imgSnack3"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/snack3"
+                android:contentDescription="@string/soft_drink" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvSnack3Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/soft_drink"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSnack3Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/_5_99"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnMinus3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/minus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+
+                    <TextView
+                        android:id="@+id/tvQuantity3"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnPlus3"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/plus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#1A1C2E"
+            android:layout_marginBottom="12dp"
+            android:gravity="start|center_vertical">
+
+            <ImageView
+                android:id="@+id/imgSnack4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/snack4"
+                android:contentDescription="@string/candy_mix" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvSnack4Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/candy_mix"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvSnack4Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/_6_99"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnMinus4"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/minus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+
+                    <TextView
+                        android:id="@+id/tvQuantity4"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/zero"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnPlus4"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:text="@string/plus"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:backgroundTint="#A927F5"
+                        android:textAllCaps="false"
+                        android:padding="0dp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/confirm"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:backgroundTint="#FF0000"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+</ScrollView>

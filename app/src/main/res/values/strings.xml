@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="snacks_drinks">Snacks &amp; Drinks</string>
+
+    <string name="explore">Explore now to experience the benefits</string>
+    <string name="book_your_movie_seats_easily">Book your movie seats easily</string>
+    <string name="get_started">Get Started</string>
+    <string name="app_logo">App Logo</string>
+
+    <string name="the_sixth_sense">The Sixth Sense</string>
+    <string name="horror_1h_47m">Horror • 1h 47m</string>
+    <string name="watch_trailer">Watch Trailer</string>
+    <string name="book_seats">Book Seats</string>
+    <string name="the_wizard_of_oz">The Wizard of Oz</string>
+    <string name="fantasy_1h_52m">Fantasy • 1h 52m</string>
+    <string name="the_omen">The Omen</string>
+    <string name="horror_1h_50m">Horror • 1h 50m</string>
+    <string name="misery">Misery</string>
+    <string name="thriller_2h_10m">Thriller • 2h 10m</string>
+
+    <string name="movie_name">Movie Name</string>
+    <string name="movie_screen4">Movie Name</string>
+    <string name="_12_screen_x">+12 | Screen X</string>
+    <string name="selected_seats_0">Selected Seats: 0</string>
+    <string name="total_price_0">Total Price: $0</string>
+    <string name="book_seats_new">Book Seats</string>
+    <string name="proceed_to_snacks">Proceed to Snacks</string>
+
+    <string name="popcorn">Popcorn</string>
+    <string name="_8_99">$8</string>
+    <string name="minus">-</string>
+    <string name="zero">0</string>
+    <string name="plus">+</string>
+    <string name="nachos">Nachos</string>
+    <string name="_7_99">$7</string>
+    <string name="soft_drink">Soft Drink</string>
+    <string name="_5_99">$5</string>
+    <string name="candy_mix">Candy Mix</string>
+    <string name="_6_99">$6</string>
+    <string name="confirm">Confirm</string>
+
+    <string name="ticket_summary">Ticket Summary</string>
+    <string name="movie_name_placeholder">Movie: </string>
+    <string name="number_of_seats_placeholder">Seats: 0</string>
+    <string name="total_price_placeholder">Total Price: $0</string>
+    <string name="send_ticket">Send Ticket</string>
+
+</resources>
