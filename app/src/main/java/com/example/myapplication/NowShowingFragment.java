@@ -1,99 +1,52 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.content.Intent;
-import android.net.Uri;
+import java.util.ArrayList;
 
 public class NowShowingFragment extends Fragment {
 
-    Button btnTrailer1, btnTrailer2, btnTrailer3, btnTrailer4;
-    Button btnBook1, btnBook2, btnBook3, btnBook4;
+    private RecyclerView rvMovies;
+    private MovieAdapter adapter;
+    private ArrayList<Movie> movieList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_now_showing, container, false);
 
-        btnTrailer1 = view.findViewById(R.id.btnTrailer1);
-        btnTrailer2 = view.findViewById(R.id.btnTrailer2);
-        btnTrailer3 = view.findViewById(R.id.btnTrailer3);
-        btnTrailer4 = view.findViewById(R.id.btnTrailer4);
+        rvMovies = view.findViewById(R.id.rvMovies);
+        rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMovies.setHasFixedSize(true);
 
-        btnTrailer1.setOnClickListener(new View.OnClickListener() {
+        movieList = new ArrayList<>();
+        movieList.add(new Movie(R.drawable.movie1, "The Sixth Sense", "Horror • 1h 47m", "https://www.youtube.com/watch?v=3-ZP95NF_Wk"));
+        movieList.add(new Movie(R.drawable.movie2, "The Wizard of Oz", "Fantasy • 1h 52m", "https://www.youtube.com/watch?v=njdreZRjvpc"));
+        movieList.add(new Movie(R.drawable.movie3, "The Omen", "Horror • 1h 50m", "https://www.youtube.com/watch?v=kqAYR6z7yAU"));
+        movieList.add(new Movie(R.drawable.movie4, "Misery", "Thriller • 2h 10m", "https://www.youtube.com/watch?v=XHQ9CPRfDsw"));
+
+        adapter = new MovieAdapter(getContext(), movieList, new MovieAdapter.OnMovieClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=3-ZP95NF_Wk")));
+            public void onBookClick(Movie movie) {
+                SeatSelectionFragment fragment = new SeatSelectionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("movie_name", movie.getName());
+                bundle.putInt("movie_poster", movie.getPoster());
+                fragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
-        btnTrailer2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=njdreZRjvpc")));
-            }
-        });
-
-        btnTrailer3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=kqAYR6z7yAU")));
-            }
-        });
-
-        btnTrailer4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=XHQ9CPRfDsw")));
-            }
-        });
-
-        btnBook1 = view.findViewById(R.id.btnBook1);
-        btnBook2 = view.findViewById(R.id.btnBook2);
-        btnBook3 = view.findViewById(R.id.btnBook3);
-        btnBook4 = view.findViewById(R.id.btnBook4);
-
-        btnBook1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Sixth Sense");
-                startActivity(intent);
-            }
-        });
-
-        btnBook2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Wizard of Oz");
-                startActivity(intent);
-            }
-        });
-
-        btnBook3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Omen");
-                startActivity(intent);
-            }
-        });
-
-        btnBook4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "Misery");
-                startActivity(intent);
-            }
-        });
+        rvMovies.setAdapter(adapter);
 
         return view;
     }

@@ -1,99 +1,52 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.content.Intent;
-import android.net.Uri;
+import java.util.ArrayList;
 
 public class ComingSoonFragment extends Fragment {
 
-    Button btnTrailer12, btnTrailer22, btnTrailer32, btnTrailer42;
-    Button btnBook12, btnBook22, btnBook32, btnBook42;
+    private RecyclerView rvMovies;
+    private MovieAdapter adapter;
+    private ArrayList<Movie> movieList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_now_showing, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_coming_soon, container, false);
+        rvMovies = view.findViewById(R.id.rvMovies);
+        rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMovies.setHasFixedSize(true);
 
-        btnTrailer12 = view.findViewById(R.id.btnTrailer12);
-        btnTrailer22 = view.findViewById(R.id.btnTrailer22);
-        btnTrailer32 = view.findViewById(R.id.btnTrailer32);
-        btnTrailer42 = view.findViewById(R.id.btnTrailer42);
+        movieList = new ArrayList<>();
+        movieList.add(new Movie(R.drawable.movie11, "The Dark Knight", "Action • 2h 32m", "https://www.youtube.com/watch?v=EXeTwQWrcwY"));
+        movieList.add(new Movie(R.drawable.movie12, "Inception", "Sci-Fi • 2h 28m", "https://www.youtube.com/watch?v=YoHD9XEInc0"));
+        movieList.add(new Movie(R.drawable.movie13, "Interstellar", "Sci-Fi • 2h 49m", "https://www.youtube.com/watch?v=zSWdZVtXT7E"));
+        movieList.add(new Movie(R.drawable.movie14, "The Shawshank Redemption", "Drama • 2h 22m", "https://www.youtube.com/watch?v=PLl99DlL6b4"));
 
-        btnTrailer12.setOnClickListener(new View.OnClickListener() {
+        adapter = new MovieAdapter(getContext(), movieList, new MovieAdapter.OnMovieClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=3-ZP95NF_Wk")));
+            public void onBookClick(Movie movie) {
+                SeatSelectionFragment fragment = new SeatSelectionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("movie_name", movie.getName());
+                bundle.putInt("movie_poster", movie.getPoster());
+                fragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, fragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
-        btnTrailer22.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=njdreZRjvpc")));
-            }
-        });
-
-        btnTrailer32.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=kqAYR6z7yAU")));
-            }
-        });
-
-        btnTrailer42.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=XHQ9CPRfDsw")));
-            }
-        });
-
-        btnBook12 = view.findViewById(R.id.btnBook12);
-        btnBook22 = view.findViewById(R.id.btnBook22);
-        btnBook32 = view.findViewById(R.id.btnBook32);
-        btnBook42 = view.findViewById(R.id.btnBook42);
-
-        btnBook12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Sixth Sense");
-                startActivity(intent);
-            }
-        });
-
-        btnBook22.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Wizard of Oz");
-                startActivity(intent);
-            }
-        });
-
-        btnBook32.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "The Omen");
-                startActivity(intent);
-            }
-        });
-
-        btnBook42.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
-                intent.putExtra("movieName", "Misery");
-                startActivity(intent);
-            }
-        });
+        rvMovies.setAdapter(adapter);
 
         return view;
     }
