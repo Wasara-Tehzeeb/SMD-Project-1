@@ -19,7 +19,7 @@ public class ComingSoonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.activity_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_coming_soon, container, false);
 
         btnTrailer12 = view.findViewById(R.id.btnTrailer12);
         btnTrailer22 = view.findViewById(R.id.btnTrailer22);

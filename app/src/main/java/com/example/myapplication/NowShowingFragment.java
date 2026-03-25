@@ -19,7 +19,7 @@ public class NowShowingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.activity_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_now_showing, container, false);
 
         btnTrailer1 = view.findViewById(R.id.btnTrailer1);
         btnTrailer2 = view.findViewById(R.id.btnTrailer2);
