@@ -7,58 +7,94 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.content.Intent;
+import android.net.Uri;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ComingSoonFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ComingSoonFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ComingSoonFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ComingSoonFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ComingSoonFragment newInstance(String param1, String param2) {
-        ComingSoonFragment fragment = new ComingSoonFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    Button btnTrailer12, btnTrailer22, btnTrailer32, btnTrailer42;
+    Button btnBook12, btnBook22, btnBook32, btnBook42;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coming_soon, container, false);
+        View view = inflater.inflate(R.layout.activity_home, container, false);
+
+        btnTrailer12 = view.findViewById(R.id.btnTrailer12);
+        btnTrailer22 = view.findViewById(R.id.btnTrailer22);
+        btnTrailer32 = view.findViewById(R.id.btnTrailer32);
+        btnTrailer42 = view.findViewById(R.id.btnTrailer42);
+
+        btnTrailer12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=3-ZP95NF_Wk")));
+            }
+        });
+
+        btnTrailer22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=njdreZRjvpc")));
+            }
+        });
+
+        btnTrailer32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=kqAYR6z7yAU")));
+            }
+        });
+
+        btnTrailer42.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=XHQ9CPRfDsw")));
+            }
+        });
+
+        btnBook12 = view.findViewById(R.id.btnBook12);
+        btnBook22 = view.findViewById(R.id.btnBook22);
+        btnBook32 = view.findViewById(R.id.btnBook32);
+        btnBook42 = view.findViewById(R.id.btnBook42);
+
+        btnBook12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
+                intent.putExtra("movieName", "The Sixth Sense");
+                startActivity(intent);
+            }
+        });
+
+        btnBook22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
+                intent.putExtra("movieName", "The Wizard of Oz");
+                startActivity(intent);
+            }
+        });
+
+        btnBook32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
+                intent.putExtra("movieName", "The Omen");
+                startActivity(intent);
+            }
+        });
+
+        btnBook42.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SeatSelectionActivity.class);
+                intent.putExtra("movieName", "Misery");
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }
