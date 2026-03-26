@@ -35,7 +35,8 @@ public class ComingSoonFragment extends Fragment {
                 SeatSelectionFragment fragment = new SeatSelectionFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("movie_name", movie.getName());
-                bundle.putInt("movie_poster", movie.getPoster());
+                bundle.putString("trailer_url", movie.getTrailerUrl());
+                bundle.putString("movie_type", "Coming Soon");
                 fragment.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager()

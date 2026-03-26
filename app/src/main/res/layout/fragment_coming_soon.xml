@@ -5,21 +5,6 @@
     android:background="#000000"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/CineFAST2"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/cinefast" />
-
-    <TextView
-        android:id="@+id/SelectDate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/select_date"
-        android:textColor="#A6A1A1" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
         android:layout_width="match_parent"
