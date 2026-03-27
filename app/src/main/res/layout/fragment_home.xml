@@ -1,36 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="#000000"
     tools:context=".HomeFragment">
 
-    <ImageView
-        android:id="@+id/CineFAST2"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginStart="-6dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/cinefast" />
+        android:background="#000000">
+
+        <ImageView
+            android:id="@+id/CineFAST2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/cinefast"
+            android:scaleType="fitStart"/>
+
+        <ImageButton
+            android:id="@+id/btnThreeDots"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"
+            android:background="#000000"
+            android:src="@drawable/three_dots"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/SelectDate"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginStart="13dp"
-        android:scaleType="fitStart"
         android:text="@string/select_date"
-        android:textColor="#A6A1A1" />
+        android:background="#000000"
+        android:textColor="#A6A1A1"
+        android:textSize="16sp"/>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:tabTextColor="#A6A1A1"
+        android:background="#000000"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 </LinearLayout>
