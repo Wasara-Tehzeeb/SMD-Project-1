@@ -14,6 +14,17 @@
         android:layout_height="55dp"
         android:background="#000000">
 
+        <TextView
+            android:id="@+id/SelectDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="13dp"
+            android:text="@string/select_date"
+            android:background="#000000"
+            android:textColor="#A6A1A1"
+            android:textSize="16sp"/>
+
         <ImageButton
             android:id="@+id/btnThreeDots"
             android:layout_width="48dp"
@@ -24,17 +35,6 @@
             android:background="#000000"
             android:src="@drawable/three_dots"/>
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/SelectDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="13dp"
-        android:text="@string/select_date"
-        android:background="#000000"
-        android:textColor="#A6A1A1"
-        android:textSize="16sp"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

@@ -57,7 +57,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             TextView tvName = headerView.findViewById(R.id.navHeaderName);
             TextView tvEmail = headerView.findViewById(R.id.navHeaderEmail);
 
-            tvName.setText(user.getDisplayName() != null ? user.getDisplayName() : "CineFAST User");
+            String name = user.getDisplayName();
+            if (name != null && !name.isEmpty()) {
+                tvName.setText(name);
+            } else {
+                tvName.setText("CineFAST User");
+            }
             tvEmail.setText(user.getEmail());
         }
     }

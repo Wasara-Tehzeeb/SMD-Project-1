@@ -1,0 +1,58 @@
+[
+  {
+    "name": "The Sixth Sense",
+    "genre": "Horror • 1h 47m",
+    "trailerUrl": "https://www.youtube.com/watch?v=3-ZP95NF_Wk",
+    "image": "movie1",
+    "type": "now_showing"
+  },
+  {
+    "name": "The Wizard of Oz",
+    "genre": "Fantasy • 1h 52m",
+    "trailerUrl": "https://www.youtube.com/watch?v=njdreZRjvpc",
+    "image": "movie2",
+    "type": "now_showing"
+  },
+  {
+    "name": "The Omen",
+    "genre": "Horror • 1h 50m",
+    "trailerUrl": "https://www.youtube.com/watch?v=kqAYR6z7yAU",
+    "image": "movie3",
+    "type": "now_showing"
+  },
+  {
+    "name": "Misery",
+    "genre": "Thriller • 2h 10m",
+    "trailerUrl": "https://www.youtube.com/watch?v=XHQ9CPRfDsw",
+    "image": "movie4",
+    "type": "now_showing"
+  },
+  {
+    "name": "The Dark Knight",
+    "genre": "Action • 2h 32m",
+    "trailerUrl": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+    "image": "movie11",
+    "type": "coming_soon"
+  },
+  {
+    "name": "Inception",
+    "genre": "Sci-Fi • 2h 28m",
+    "trailerUrl": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+    "image": "movie12",
+    "type": "coming_soon"
+  },
+  {
+    "name": "Interstellar",
+    "genre": "Sci-Fi • 2h 49m",
+    "trailerUrl": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+    "image": "movie13",
+    "type": "coming_soon"
+  },
+  {
+    "name": "The Shawshank Redemption",
+    "genre": "Drama • 2h 22m",
+    "trailerUrl": "https://www.youtube.com/watch?v=PLl99DlL6b4",
+    "image": "movie14",
+    "type": "coming_soon"
+  }
+]

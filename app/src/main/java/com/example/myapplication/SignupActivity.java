@@ -66,7 +66,6 @@ public class SignupActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult){
-                            // ✅ ADDED: Save the user's name to Firebase Auth Profile
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             if (firebaseUser != null) {
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

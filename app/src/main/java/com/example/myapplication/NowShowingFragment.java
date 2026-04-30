@@ -23,11 +23,7 @@ public class NowShowingFragment extends Fragment {
         rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMovies.setHasFixedSize(true);
 
-        movieList = new ArrayList<>();
-        movieList.add(new Movie(R.drawable.movie1, "The Sixth Sense", "Horror • 1h 47m", "https://www.youtube.com/watch?v=3-ZP95NF_Wk"));
-        movieList.add(new Movie(R.drawable.movie2, "The Wizard of Oz", "Fantasy • 1h 52m", "https://www.youtube.com/watch?v=njdreZRjvpc"));
-        movieList.add(new Movie(R.drawable.movie3, "The Omen", "Horror • 1h 50m", "https://www.youtube.com/watch?v=kqAYR6z7yAU"));
-        movieList.add(new Movie(R.drawable.movie4, "Misery", "Thriller • 2h 10m", "https://www.youtube.com/watch?v=XHQ9CPRfDsw"));
+        movieList = JsonUtils.loadMoviesByType(requireContext(), "now_showing");
 
         adapter = new MovieAdapter(getContext(), movieList, new MovieAdapter.OnMovieClickListener() {
             @Override

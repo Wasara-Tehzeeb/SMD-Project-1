@@ -23,11 +23,7 @@ public class ComingSoonFragment extends Fragment {
         rvMovies.setLayoutManager(new LinearLayoutManager(getContext()));
         rvMovies.setHasFixedSize(true);
 
-        movieList = new ArrayList<>();
-        movieList.add(new Movie(R.drawable.movie11, "The Dark Knight", "Action • 2h 32m", "https://www.youtube.com/watch?v=EXeTwQWrcwY"));
-        movieList.add(new Movie(R.drawable.movie12, "Inception", "Sci-Fi • 2h 28m", "https://www.youtube.com/watch?v=YoHD9XEInc0"));
-        movieList.add(new Movie(R.drawable.movie13, "Interstellar", "Sci-Fi • 2h 49m", "https://www.youtube.com/watch?v=zSWdZVtXT7E"));
-        movieList.add(new Movie(R.drawable.movie14, "The Shawshank Redemption", "Drama • 2h 22m", "https://www.youtube.com/watch?v=PLl99DlL6b4"));
+        movieList = JsonUtils.loadMoviesByType(requireContext(), "coming_soon");
 
         adapter = new MovieAdapter(getContext(), movieList, new MovieAdapter.OnMovieClickListener() {
             @Override
