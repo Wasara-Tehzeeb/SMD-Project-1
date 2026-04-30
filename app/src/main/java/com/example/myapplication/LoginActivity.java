@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String PREF_NAME = "cinefast_session_pref_v3";
+    private static final String KEY_IS_LOGGED_IN = "is_logged_in";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseAuth auth;
         FirebaseUser user;
+        SharedPreferences sharedPreferences;
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -42,6 +47,14 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+            return;
+        }
 
         if (user!=null){
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
@@ -62,6 +75,11 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+                                if (cbRememberMe.isChecked()) {
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                                    editor.apply();
+                                }
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 finish();
                             }

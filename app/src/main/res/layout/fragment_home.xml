@@ -14,14 +14,6 @@
         android:layout_height="55dp"
         android:background="#000000">
 
-        <ImageView
-            android:id="@+id/CineFAST2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/cinefast"
-            android:scaleType="fitStart"/>
-
         <ImageButton
             android:id="@+id/btnThreeDots"
             android:layout_width="48dp"

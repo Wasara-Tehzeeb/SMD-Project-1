@@ -52,4 +52,7 @@
     <string name="movie_details">Movie Details</string>
     <string name="booking_details">Booking Details</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>

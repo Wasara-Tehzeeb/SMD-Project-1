@@ -19,6 +19,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 import androidx.annotation.NonNull;
 
 public class SignupActivity extends AppCompatActivity {
@@ -28,9 +31,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        EditText etSignupEmail, etSignupPassword, etConfirmPassword;
+        EditText etSignupName, etSignupEmail, etSignupPassword, etConfirmPassword;
         Button btnSignup;
 
+        etSignupName = findViewById(R.id.etSignupName);
         etSignupEmail = findViewById(R.id.etSignupEmail);
         etSignupPassword = findViewById(R.id.etSignupPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
@@ -40,11 +44,12 @@ public class SignupActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = etSignupName.getText().toString().trim();
                 String email = etSignupEmail.getText().toString().trim();
                 String password = etSignupPassword.getText().toString();
                 String confirmPass = etConfirmPassword.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
+                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
                     Toast.makeText(SignupActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -61,10 +66,23 @@ public class SignupActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult){
-                            Toast.makeText(SignupActivity.this,"User created",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                            finish();
+                            // ✅ ADDED: Save the user's name to Firebase Auth Profile
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(name)
+                                        .build();
+
+                                firebaseUser.updateProfile(profileUpdates)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(SignupActivity.this, "User created successfully", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(SignupActivity.this, HomeActivity.class));
+                                                finish();
+                                            }
+                                        });
+                            }
                         }
                 })
                 .addOnFailureListener(new OnFailureListener() {
