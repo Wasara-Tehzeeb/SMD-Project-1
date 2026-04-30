@@ -57,8 +57,11 @@ public class SeatSelectionFragment extends Fragment {
         }
 
         bookedSeats.clear();
-        int[] preBooked = {5,6,7,12,15,18,20,22,25,28,30,32,35,57,58,59};
-        for(int s : preBooked) bookedSeats.add(s);
+
+        if (!isComingSoon) {
+            int[] preBooked = {5, 6, 7, 12, 15, 18, 20, 22, 25, 28, 30, 32, 35, 57, 58, 59};
+            for (int s : preBooked) bookedSeats.add(s);
+        }
 
         int[][] layoutPattern = {
                 {4, 4},

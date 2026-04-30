@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class SnacksFragment extends Fragment {
     private ListView listView;
     private SnackAdapter adapter;
     private ArrayList<Snack> snackList;
+    private DatabaseHelper dbHelper;
 
     private String movieName;
     private int selectedSeatsCount;
@@ -34,17 +36,16 @@ public class SnacksFragment extends Fragment {
             ticketPrice = getArguments().getInt("ticketPrice", 0);
         }
 
-        snackList = new ArrayList<>();
-        snackList.add(new Snack(R.drawable.snack1, "Popcorn", 8));
-        snackList.add(new Snack(R.drawable.snack2, "Nachos", 7));
-        snackList.add(new Snack(R.drawable.snack3, "Soft Drink", 5));
-        snackList.add(new Snack(R.drawable.snack4, "Candy Mix", 6));
+        dbHelper = new DatabaseHelper(getContext());
+        snackList = dbHelper.getAllSnacks();
 
         adapter = new SnackAdapter(getContext(), snackList);
         listView.setAdapter(adapter);
 
         Button btnConfirm = view.findViewById(R.id.btnConfirm);
         btnConfirm.setOnClickListener(v -> {
+            Toast.makeText(requireContext(), "Booking Confirmed", Toast.LENGTH_SHORT).show();
+
             int snacksTotal = adapter.getTotalPrice();
 
             TicketSummaryFragment fragment = new TicketSummaryFragment();
