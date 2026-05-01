@@ -19,10 +19,6 @@ public class SnacksFragment extends Fragment {
     private ArrayList<Snack> snackList;
     private DatabaseHelper dbHelper;
 
-    private String movieName;
-    private int selectedSeatsCount;
-    private int ticketPrice;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,13 +26,25 @@ public class SnacksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_snacks, container, false);
         listView = view.findViewById(R.id.lvSnacks);
 
+        final String movieName;
+        final int selectedSeatsCount;
+        final int ticketPrice;
+        final String moviePoster;
+
         if (getArguments() != null) {
             movieName = getArguments().getString("movie_name", "");
             selectedSeatsCount = getArguments().getInt("selectedSeatsCount", 0);
             ticketPrice = getArguments().getInt("ticketPrice", 0);
+            moviePoster = getArguments().getString("movie_poster", "");
+        }
+        else {
+            movieName = "";
+            selectedSeatsCount = 0;
+            ticketPrice = 0;
+            moviePoster = "";
         }
 
-        dbHelper = new DatabaseHelper(getContext());
+        dbHelper = new DatabaseHelper(requireContext());
         snackList = dbHelper.getAllSnacks();
 
         adapter = new SnackAdapter(getContext(), snackList);
@@ -54,9 +62,10 @@ public class SnacksFragment extends Fragment {
             bundle.putInt("selectedSeatsCount", selectedSeatsCount);
             bundle.putInt("ticketPrice", ticketPrice);
             bundle.putInt("snacksTotal", snacksTotal);
+            bundle.putString("movie_poster", moviePoster);
             fragment.setArguments(bundle);
 
-            getActivity().getSupportFragmentManager()
+            requireActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentContainer, fragment)
                     .addToBackStack(null)

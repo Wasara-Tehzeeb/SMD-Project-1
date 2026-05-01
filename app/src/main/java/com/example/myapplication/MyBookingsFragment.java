@@ -1,64 +1,123 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyBookingsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyBookingsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private BookingAdapter adapter;
+    private List<Bookings> bookingList;
+    private TextView tvEmptyState;
+    private EditText etSearch;
+    private DatabaseReference mDatabase;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MyBookingsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyBookingsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyBookingsFragment newInstance(String param1, String param2) {
-        MyBookingsFragment fragment = new MyBookingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_my_bookings, container, false);
+
+        recyclerView = view.findViewById(R.id.rvBookings);
+        tvEmptyState = view.findViewById(R.id.tvEmptyState);
+        etSearch = view.findViewById(R.id.etSearchBooking);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        bookingList = new ArrayList<>();
+
+        adapter = new BookingAdapter(getContext(), bookingList, bookingId -> {
+            cancelBooking(bookingId);
+        });
+
+        recyclerView.setAdapter(adapter);
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adapter.filter(s.toString());
+                checkEmptyState();
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        });
+
+        fetchBookings();
+        return view;
+    }
+
+    private void checkEmptyState() {
+        if (adapter.getItemCount() == 0) {
+            tvEmptyState.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            tvEmptyState.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_bookings, container, false);
+    private void fetchBookings() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(getContext(), "Not logged in!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String userId = currentUser.getUid();
+
+        mDatabase.child("bookings").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                bookingList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Bookings booking = ds.getValue(Bookings.class);
+                    if (booking != null) {
+                        booking.setBookingId(ds.getKey());
+                        bookingList.add(booking);
+                    }
+                }
+                adapter.filter(etSearch.getText().toString());
+                checkEmptyState();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to load bookings.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void cancelBooking(String bookingId) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser == null) return;
+
+        mDatabase.child("bookings").child(currentUser.getUid()).child(bookingId).removeValue()
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getContext(), "Booking Cancelled Successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "Failed to cancel.", Toast.LENGTH_SHORT).show();
+                });
     }
 }

@@ -33,6 +33,14 @@ public class NowShowingFragment extends Fragment {
                 bundle.putString("movie_name", movie.getName());
                 bundle.putString("trailer_url", movie.getTrailerUrl());
                 bundle.putString("movie_type", "Now Showing");
+                String posterName = "";
+                try {
+                    posterName = requireContext().getResources().getResourceEntryName(movie.getPoster());
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+                bundle.putString("movie_poster", posterName);
                 fragment.setArguments(bundle);
 
                 getActivity().getSupportFragmentManager()

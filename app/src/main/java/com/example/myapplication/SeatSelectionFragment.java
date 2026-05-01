@@ -44,6 +44,7 @@ public class SeatSelectionFragment extends Fragment {
         String movieName = "";
         String movieType = "";
         String trailerUrl = "";
+        final String moviePoster = (bundle != null) ? bundle.getString("movie_poster", "") : "";
 
         if (bundle != null) {
             movieName = bundle.getString("movie_name");
@@ -130,9 +131,10 @@ public class SeatSelectionFragment extends Fragment {
                 b.putString("movie_name", MovieName);
                 b.putInt("selectedSeatsCount", selectedSeats.size());
                 b.putInt("ticketPrice", ticketPrice);
+                b.putString("movie_poster", moviePoster);
                 fragment.setArguments(b);
 
-                getActivity().getSupportFragmentManager()
+                requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, fragment)
                         .addToBackStack(null)
@@ -153,9 +155,11 @@ public class SeatSelectionFragment extends Fragment {
                 b.putInt("selectedSeatsCount", selectedSeats.size());
                 b.putInt("ticketPrice", ticketPrice);
                 b.putInt("snacksTotal", 0);
+                b.putString("movie_poster", moviePoster);
+                
                 fragment.setArguments(b);
 
-                getActivity().getSupportFragmentManager()
+                requireActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragmentContainer, fragment)
                         .addToBackStack(null)
